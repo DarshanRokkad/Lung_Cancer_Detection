@@ -31,7 +31,6 @@ Click the below image to see vedio solution explaination.
 9. Update the dvc.yaml
 
 
-
 ---
 
 <h3 align="center">Project UI</h3>
