@@ -4,7 +4,7 @@ import logging
 
 
 log_dir = "logs"
-os.makedirs(os.getcwd(), log_dir, exist_ok=True)
+os.makedirs(log_dir, exist_ok=True)
 log_filepath = os.path.join(log_dir,"running_logs.log")
 
 logging.basicConfig(
