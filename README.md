@@ -26,8 +26,8 @@ Click the below image to see vedio solution explaination.
 4. Update the entity
 5. Update the configuration manager in src config
 6. Update the components
-7. Update the pipeline
-8. Update the main.py
+7. Update the stages
+8. Update the Training pipeline
 9. Update the dvc.yaml
 
 ``` Note : When we use mlflow before runing code we have to set the mlflow variables ```
