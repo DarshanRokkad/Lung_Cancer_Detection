@@ -1,6 +1,6 @@
 from pathlib import Path
 import tensorflow as tf
-from src.entity.config_entity import PrepareBaseModelConfig
+from chest_cancer_classifier.entity.config_entity import PrepareBaseModelConfig
 
 
 class PrepareBaseModel:

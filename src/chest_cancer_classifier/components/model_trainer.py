@@ -1,6 +1,6 @@
 from pathlib import Path
 import tensorflow as tf
-from src.entity.config_entity import TrainingConfig
+from chest_cancer_classifier.entity.config_entity import TrainingConfig
 
 
 class ModelTraining:

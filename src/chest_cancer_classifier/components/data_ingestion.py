@@ -1,8 +1,8 @@
 import os
 import zipfile
 import gdown
-from src import logger
-from src.entity.config_entity import DataIngestionConfig
+from chest_cancer_classifier import logger
+from chest_cancer_classifier.config.configuration import DataIngestionConfig
 
 
 class DataIngestion:

@@ -1,6 +1,6 @@
-from src.config.configuration import ConfigurationManager
-from src.components.model_evaluation import ModelEvaluation
-from src import logger
+from chest_cancer_classifier.config.configuration import ConfigurationManager
+from chest_cancer_classifier.components.model_evaluation import ModelEvaluation
+from chest_cancer_classifier import logger
 
 
 STAGE_NAME = "Model Evaluation"

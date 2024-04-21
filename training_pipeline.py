@@ -1,8 +1,8 @@
-from src import logger
-from src.pipeline.stage_01_data_ingestion import DataIngestionTrainingPipeline
-from src.pipeline.stage_02_prepare_base_model import PrepareBaseModelTrainingPipeline
-from src.pipeline.stage_03_model_trainer import ModelTrainerTrainingPipeline
-from src.pipeline.stage_04_model_evaluation import ModelEvaluationTrainingPipeline
+from chest_cancer_classifier import logger
+from chest_cancer_classifier.pipeline.stage_01_data_ingestion import DataIngestionTrainingPipeline
+from chest_cancer_classifier.pipeline.stage_02_prepare_base_model import PrepareBaseModelTrainingPipeline
+from chest_cancer_classifier.pipeline.stage_03_model_trainer import ModelTrainerTrainingPipeline
+from chest_cancer_classifier.pipeline.stage_04_model_evaluation import ModelEvaluationTrainingPipeline
 
 
 # For testing purpose 
