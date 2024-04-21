@@ -13,6 +13,7 @@ stages:
     deps:
       - src\chest_cancer_classifier\pipeline\stage_02_prepare_base_model.py
       - config\config.yaml
+      - params.yaml
     params:
       - IMAGE_SIZE
       - INCLUDE_TOP
@@ -30,6 +31,7 @@ stages:
       - config\config.yaml
       - artifacts\data_ingestion\Chest-CT-Scan-data
       - artifacts\prepare_base_model
+      - params.yaml
     params:
       - IMAGE_SIZE
       - EPOCHS
@@ -46,6 +48,7 @@ stages:
       - config\config.yaml
       - artifacts\data_ingestion\Chest-CT-Scan-data
       - artifacts\training\model.h5
+      - params.yaml
     params:
       - IMAGE_SIZE
       - BATCH_SIZE
