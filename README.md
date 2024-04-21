@@ -30,6 +30,7 @@ Click the below image to see vedio solution explaination.
 8. Update the main.py
 9. Update the dvc.yaml
 
+``` Note : When we use mlflow before runing code we have to set the mlflow variables ```
 
 ---
 
