@@ -31,6 +31,7 @@ Click the below image to see vedio solution explaination.
 9. Update the dvc.yaml
 
 ``` Note : When we use mlflow before runing code we have to set the mlflow variables ```
+``` Note : When we do pipeline versioning we have to have driver code in each stages itself ```
 
 ---
 
