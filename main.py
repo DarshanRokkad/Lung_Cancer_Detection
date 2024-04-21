@@ -2,6 +2,7 @@ from src import logger
 from src.pipeline.stage_01_data_ingestion import DataIngestionTrainingPipeline
 from src.pipeline.stage_02_prepare_base_model import PrepareBaseModelTrainingPipeline
 from src.pipeline.stage_03_model_trainer import ModelTrainerTrainingPipeline
+from src.pipeline.stage_04_model_evaluation import ModelEvaluationTrainingPipeline
 
 
 # For testing purpose 
@@ -34,6 +35,19 @@ try:
     logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<<")
     obj = ModelTrainerTrainingPipeline()
     obj.initiate_model_training()
+    logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<")
+    logger.info(f"*******************")
+except Exception as e:
+    logger.exception(e)
+    raise e
+
+
+STAGE_NAME = "Model Evaluation"
+try:
+    logger.info(f"*******************")
+    logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<<")
+    obj = ModelEvaluationTrainingPipeline()
+    obj.initiate_model_evaluation()
     logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<")
     logger.info(f"*******************")
 except Exception as e:
