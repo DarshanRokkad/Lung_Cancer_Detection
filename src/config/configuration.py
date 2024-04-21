@@ -1,17 +1,19 @@
 import os
 from src.constants import *
 from src.utils.common import read_yaml, create_directories
-from src.entity.config_entity import DataIngestionConfig, PrepareBaseModelConfig, TrainingConfig
+from src.entity.config_entity import DataIngestionConfig, PrepareBaseModelConfig, TrainingConfig, EvaluationConfig
 
 
 class ConfigurationManager:
     def __init__(
-        self,
+        self, 
         config_filepath = CONFIG_FILE_PATH,
-        params_filepath = PARAMS_FILE_PATH
+        params_filepath = PARAMS_FILE_PATH,
+        secrets_file_path = SECRETS_FILE_PATH
     ):
         self.config = read_yaml(config_filepath)
         self.params = read_yaml(params_filepath)
+        self.secrets = read_yaml(secrets_file_path)
         create_directories([self.config.artifacts_root])
 
 
@@ -69,3 +71,20 @@ class ConfigurationManager:
         )
 
         return training_config
+        
+    
+    def get_evaluation_config(self) -> EvaluationConfig:
+        training = self.config.training
+        mlflow_secrets = self.secrets.mlflow
+        params = self.params
+        
+        eval_config = EvaluationConfig(
+            path_of_model=Path(training.trained_model_path),
+            training_data=Path(training.training_data),
+            mlflow_uri=mlflow_secrets.MLFLOW_TRACKING_URI,
+            all_params=params,
+            params_image_size=params.IMAGE_SIZE,
+            params_batch_size=params.BATCH_SIZE
+        )
+        
+        return eval_config
