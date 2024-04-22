@@ -1,44 +1,20 @@
-from flask import Flask, request, jsonify, render_template
-import os
-from flask_cors import CORS, cross_origin
-from chest_cancer_classifier.utils.common import decodeImage
+import streamlit as st
+from PIL import Image
 from chest_cancer_classifier.pipeline.prediction_pipeline import PredictionPipeline
 
 
-app = Flask(__name__)
+st.markdown("<h1 style='text-align: center;'>Chest Cancer Prediction</h1>", unsafe_allow_html=True)
 
+uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
 
-class ClientApp:
-    def __init__(self):
-        self.filename = "inputImage.jpg"
-        self.classifier = PredictionPipeline(self.filename)
+if uploaded_file is not None:
+    image = Image.open(uploaded_file)
+    image_name = "uploaded_image.jpg"
+    with open(image_name, "wb") as f:
+        f.write(uploaded_file.getvalue())
+    st.image(image, use_column_width="auto")
 
-
-@app.route("/", methods=["GET"])
-@cross_origin()
-def home():
-    return render_template("index.html")
-
-
-@app.route("/train", methods=["GET", "POST"])
-@cross_origin()
-def trainRoute():
-    os.system("python src\\chest_cancer_classifier\\pipeline\\training_pipeline.py")
-    # os.system("dvc repro")
-    return "Training done successfully!"
-
-
-@app.route("/predict", methods=["POST"])
-@cross_origin()
-def predictRoute():
-    image = request.json["image"]
-    
-    decodeImage(image, client_app.filename)
-    result = client_app.classifier.predict()
-    
-    return jsonify(result)
-
-
-if __name__ == "__main__":
-    client_app = ClientApp()
-    app.run(host="0.0.0.0")
+    if st.button("Predict"):
+        classifier = PredictionPipeline(image_name)
+        prediction = classifier.predict()
+        st.markdown(f"<h3 style='text-align: center;'>Prediction : {prediction}</h3>", unsafe_allow_html=True)

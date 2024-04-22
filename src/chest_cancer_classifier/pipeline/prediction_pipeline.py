@@ -7,10 +7,8 @@ import numpy as np
 class PredictionPipeline:
     def __init__(self,filename):
         self.filename = filename
-
     
     def predict(self):
-        ## load model
         model = load_model(os.path.join("artifacts","training", "model.h5"))
 
         test_image = image.load_img(self.filename, target_size = (224,224))
@@ -23,4 +21,4 @@ class PredictionPipeline:
             prediction = 'Normal'
         else:
             prediction = 'Adenocarcinoma Cancer'
-        return [prediction]
+        return prediction
