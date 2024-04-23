@@ -18,3 +18,4 @@ training:
   root_dir: artifacts/training
   trained_model_path: artifacts/training/trained_model.h5
   training_data: artifacts/data_ingestion/Chest-CT-Scan-data
+  validation_data: artifacts/data_ingestion/Chest-CT-Scan-data

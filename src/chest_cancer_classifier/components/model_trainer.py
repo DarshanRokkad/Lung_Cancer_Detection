@@ -5,6 +5,11 @@ from keras.preprocessing.image import ImageDataGenerator
 from keras.applications.vgg16 import preprocess_input
 from chest_cancer_classifier.entity.config_entity import TrainingConfig
 
+import tensorflow as tf
+import keras 
+from keras.preprocessing.image import ImageDataGenerator
+from keras.applications.vgg16 import preprocess_input
+
 
 class ModelTraining:
     def __init__(self, config: TrainingConfig):
@@ -53,7 +58,7 @@ class ModelTraining:
                 fill_mode='nearest'
             )
             self.valid_generator = test_datagen.flow_from_directory(
-                self.config.training_data,
+                self.config.validation_data,
                 target_size=IMAGE_SIZE,
                 batch_size=self.config.params_batch_size,
                 class_mode='binary'
@@ -66,16 +71,16 @@ class ModelTraining:
                 batch_size=self.config.params_batch_size,
                 image_size=IMAGE_SIZE
             )
-            self.train_generator = self.train_generator.map(self.__process)
+            self.train_generator = self.train_generator.map(preprocess_input)
 
             self.valid_generator = keras.utils.image_dataset_from_directory(
-                directory = self.config.training_data,
+                directory = self.config.validation_data,
                 labels='inferred',
                 label_mode = 'int',
                 batch_size=self.config.params_batch_size,
                 image_size=IMAGE_SIZE
             )
-            self.valid_generator = self.valid_generator.map(self.__process)
+            self.valid_generator = self.valid_generator.map(preprocess_input)
 
     
     @staticmethod
