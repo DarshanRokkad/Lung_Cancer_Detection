@@ -1,5 +1,8 @@
 from pathlib import Path
 import tensorflow as tf
+import keras
+from keras.preprocessing.image import ImageDataGenerator
+from keras.applications.vgg16 import preprocess_input
 from chest_cancer_classifier.entity.config_entity import TrainingConfig
 
 
@@ -9,57 +12,74 @@ class ModelTraining:
 
     
     def get_base_model(self):
-        self.model = tf.keras.models.load_model(
+        self.model = keras.models.load_model(
             self.config.updated_base_model_path
         )
 
 
+    def __process(image,label):
+        image = tf.cast(image/255. , tf.float32)
+        return image,label
+
+
     def train_valid_generator(self):
-        datagenerator_kwargs = dict(
-            rescale = 1./255,
-            validation_split=0.20
-        )
-
-        valid_datagenerator = tf.keras.preprocessing.image.ImageDataGenerator(
-            **datagenerator_kwargs
-        )
-
-        dataflow_kwargs = dict(
-            target_size=self.config.params_image_size[:-1],
-            batch_size=self.config.params_batch_size,
-            interpolation="bilinear"
-        )
-
-        self.valid_generator = valid_datagenerator.flow_from_directory(
-            directory=self.config.training_data,
-            subset="validation",
-            shuffle=False,
-            **dataflow_kwargs
-        )
-
+        IMAGE_SIZE = self.config.params_image_size[:-1]
         if self.config.params_is_augmentation:
-            train_datagenerator = tf.keras.preprocessing.image.ImageDataGenerator(
+            train_datagen = ImageDataGenerator(
+                preprocessing_function = preprocess_input,
                 rotation_range=40,
-                horizontal_flip=True,
                 width_shift_range=0.2,
                 height_shift_range=0.2,
                 shear_range=0.2,
                 zoom_range=0.2,
-                **datagenerator_kwargs
+                horizontal_flip=True,
+                fill_mode='nearest'
+            )
+            self.train_generator = train_datagen.flow_from_directory(
+                self.config.training_data,
+                target_size=IMAGE_SIZE,
+                batch_size=self.config.params_batch_size,
+                class_mode='binary'
+            )
+                    
+            test_datagen = ImageDataGenerator(
+                preprocessing_function=preprocess_input,
+                rotation_range=40,
+                width_shift_range=0.2,
+                height_shift_range=0.2,
+                shear_range=0.2,
+                zoom_range=0.2,
+                horizontal_flip=True,
+                fill_mode='nearest'
+            )
+            self.valid_generator = test_datagen.flow_from_directory(
+                self.config.training_data,
+                target_size=IMAGE_SIZE,
+                batch_size=self.config.params_batch_size,
+                class_mode='binary'
             )
         else:
-            train_datagenerator = valid_datagenerator
+            self.train_generator = keras.utils.image_dataset_from_directory(
+                directory = self.config.training_data,
+                labels='inferred',
+                label_mode = 'int',
+                batch_size=self.config.params_batch_size,
+                image_size=IMAGE_SIZE
+            )
+            self.train_generator = self.train_generator.map(self.__process)
 
-        self.train_generator = train_datagenerator.flow_from_directory(
-            directory=self.config.training_data,
-            subset="training",
-            shuffle=True,
-            **dataflow_kwargs
-        )
+            self.valid_generator = keras.utils.image_dataset_from_directory(
+                directory = self.config.training_data,
+                labels='inferred',
+                label_mode = 'int',
+                batch_size=self.config.params_batch_size,
+                image_size=IMAGE_SIZE
+            )
+            self.valid_generator = self.valid_generator.map(self.__process)
 
     
     @staticmethod
-    def save_model(path: Path, model: tf.keras.Model):
+    def save_model(path: Path, model: keras.Model):
         model.save(path)
 
     
@@ -71,11 +91,11 @@ class ModelTraining:
             self.train_generator,
             epochs=self.config.params_epochs,
             steps_per_epoch=self.steps_per_epoch,
-            validation_steps=self.validation_steps,
-            validation_data=self.valid_generator
+            validation_data=self.valid_generator,
+            validation_steps=self.validation_steps
         )
 
         self.save_model(
             path=self.config.trained_model_path,
-            model=self.model        
+            model=self.model
         )
