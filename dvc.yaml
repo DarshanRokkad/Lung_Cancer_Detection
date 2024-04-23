@@ -38,7 +38,7 @@ stages:
       - BATCH_SIZE
       - AUGMENTATION
     outs:
-      - artifacts\training\model.h5
+      - artifacts\training\trained_model.h5
 
 
   evaluation:
@@ -47,7 +47,7 @@ stages:
       - src\chest_cancer_classifier\training_stages\stage_04_model_evaluation.py
       - config\config.yaml
       - artifacts\data_ingestion\Chest-CT-Scan-data
-      - artifacts\training\model.h5
+      - artifacts\training\trained_model.h5
       - params.yaml
     params:
       - IMAGE_SIZE
