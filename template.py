@@ -7,6 +7,8 @@ logging.basicConfig(
     format='[%(asctime)s]: %(message)s:'
 )
 
+package_name = 'lung_cancer_classifier'
+
 list_of_files = [
     ".github/workflows/.gitkeep",
     
@@ -15,21 +17,20 @@ list_of_files = [
     "notebook/experiments.ipynb",
     
     "src/__init__.py",
-    "src/components/__init__.py",
-    "src/pipeline/__init__.py",
-    "src/utils/__init__.py",
-    "src/config/__init__.py",
-    "src/config/configuration.py",
-    "src/entity/__init__.py",
-    "src/constants/__init__.py",
+    f"src/{package_name}/entity/__init__.py",
+    f"src/{package_name}/config/__init__.py",
+    f"src/{package_name}/config/configuration.py",
+    f"src/{package_name}/constants/__init__.py",
+    f"src/{package_name}/components/__init__.py",
+    f"src/{package_name}/training_stages/__init__.py",
+    f"src/{package_name}/pipeline/__init__.py",
+    f"src/{package_name}/utils/__init__.py",
     
     "config/config.yaml",
     "dvc.yaml",
     "params.yaml",
     
     "app.py",
-    "templates/index.html",
-    "static/styles.css"
 ]
 
 for filepath in list_of_files:

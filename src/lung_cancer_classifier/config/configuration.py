@@ -1,6 +1,6 @@
-from chest_cancer_classifier.constants import *
-from chest_cancer_classifier.utils.common import read_yaml, create_directories
-from chest_cancer_classifier.entity.config_entity import DataIngestionConfig, PrepareBaseModelConfig, TrainingConfig, EvaluationConfig
+from lung_cancer_classifier.constants import *
+from lung_cancer_classifier.utils.common import read_yaml, create_directories
+from lung_cancer_classifier.entity.config_entity import DataIngestionConfig, PrepareBaseModelConfig, TrainingConfig, EvaluationConfig
 
 
 class ConfigurationManager:

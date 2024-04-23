@@ -8,7 +8,7 @@ from box import ConfigBox
 from pathlib import Path
 from typing import Any
 import base64
-from chest_cancer_classifier import logger
+from lung_cancer_classifier import logger
 
 
 @ensure_annotations

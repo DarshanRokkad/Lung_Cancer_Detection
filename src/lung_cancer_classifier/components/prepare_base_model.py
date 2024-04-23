@@ -5,7 +5,7 @@ from keras.applications.vgg16 import VGG16
 from keras.layers import Dense,Flatten
 from keras.optimizers import Adam
 from keras.losses import BinaryCrossentropy
-from chest_cancer_classifier.entity.config_entity import PrepareBaseModelConfig
+from lung_cancer_classifier.entity.config_entity import PrepareBaseModelConfig
 
 
 class PrepareBaseModel:

@@ -3,7 +3,7 @@ import tensorflow as tf
 import keras
 from keras.preprocessing.image import ImageDataGenerator
 from keras.applications.vgg16 import preprocess_input
-from chest_cancer_classifier.entity.config_entity import TrainingConfig
+from lung_cancer_classifier.entity.config_entity import TrainingConfig
 
 
 class ModelTraining:

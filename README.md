@@ -1,10 +1,10 @@
-<h1 align="center">Lung Cancer🫁 Detection 🤖</h1>
+<h1 align="center">🫁 Lung Cancer Detection 🔍</h1>
 
 ---
 
 <h3 align="center">Problem Statement</h3>
 
-Given an image we have to classify wheather the image is Adeno carinoma cancer or not.
+Given a CT Scan image we have to classify wheather the CT Scan image is Adenocarinoma cancer or not.
 
 ---
 
@@ -43,7 +43,7 @@ Click the below image to see vedio solution explaination.
 
 <h3 align="center">Integration of DVC</h3>
 
-<p align="center">I have used DVC for my training pipeline versioning.</p>
+<p align="center">I have used DVC for versioning of training pipeline.</p>
 <p align="center"><img src="images/dvc1.png" width="700" height="400"></p>
 
 ---
@@ -56,7 +56,7 @@ Click the below image to see vedio solution explaination.
 
 ---
 
-<h3 align="center">Deployment of streamlit application on aws cloud</h3>
+<h3 align="center">Deployment of streamlit application on AWS cloud</h3>
 
 <p align="center">I have used AWS ECR and AWS EC2 to deploy our application.</p>
 <p align="center"><img src="images/deploy1.png" width="700" height="400"></p>
@@ -85,7 +85,7 @@ Click the below image to see vedio solution explaination.
 │
 ├── src
 │    │
-│    └── chest_cancer_classifier (package)
+│    └── lung_cancer_classifier (package)
 │          │
 │          ├── components
 │          │     │

@@ -1,8 +1,8 @@
 import os
 import zipfile
 import gdown
-from chest_cancer_classifier import logger
-from chest_cancer_classifier.config.configuration import DataIngestionConfig
+from lung_cancer_classifier import logger
+from lung_cancer_classifier.config.configuration import DataIngestionConfig
 
 
 class DataIngestion:

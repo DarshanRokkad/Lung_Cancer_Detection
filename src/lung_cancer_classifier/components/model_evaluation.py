@@ -4,8 +4,8 @@ from pathlib import Path
 import mlflow
 import mlflow.keras
 from urllib.parse import urlparse
-from chest_cancer_classifier.utils.common import save_json
-from chest_cancer_classifier.entity.config_entity import EvaluationConfig
+from lung_cancer_classifier.utils.common import save_json
+from lung_cancer_classifier.entity.config_entity import EvaluationConfig
 
 
 class ModelEvaluation:

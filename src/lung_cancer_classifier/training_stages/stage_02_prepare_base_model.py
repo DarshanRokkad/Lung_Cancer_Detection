@@ -1,6 +1,6 @@
-from chest_cancer_classifier.config.configuration import ConfigurationManager
-from chest_cancer_classifier.components.prepare_base_model import PrepareBaseModel
-from chest_cancer_classifier import logger
+from lung_cancer_classifier import logger
+from lung_cancer_classifier.config.configuration import ConfigurationManager
+from lung_cancer_classifier.components.prepare_base_model import PrepareBaseModel
 
 
 STAGE_NAME = 'Prepare Base Model'
