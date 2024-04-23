@@ -5,11 +5,6 @@ from keras.preprocessing.image import ImageDataGenerator
 from keras.applications.vgg16 import preprocess_input
 from chest_cancer_classifier.entity.config_entity import TrainingConfig
 
-import tensorflow as tf
-import keras 
-from keras.preprocessing.image import ImageDataGenerator
-from keras.applications.vgg16 import preprocess_input
-
 
 class ModelTraining:
     def __init__(self, config: TrainingConfig):
@@ -30,7 +25,7 @@ class ModelTraining:
     def train_valid_generator(self):
         IMAGE_SIZE = self.config.params_image_size[:-1]
         if self.config.params_is_augmentation:
-            train_datagen = ImageDataGenerator(
+            data_generator_kwargs = dict(                
                 preprocessing_function = preprocess_input,
                 rotation_range=40,
                 width_shift_range=0.2,
@@ -40,45 +35,40 @@ class ModelTraining:
                 horizontal_flip=True,
                 fill_mode='nearest'
             )
+            generator_kwargs = dict(
+                target_size=IMAGE_SIZE,
+                batch_size=self.config.params_batch_size,
+                class_mode='binary'
+            )
+            
+            train_datagen = ImageDataGenerator(**data_generator_kwargs)
             self.train_generator = train_datagen.flow_from_directory(
                 self.config.training_data,
-                target_size=IMAGE_SIZE,
-                batch_size=self.config.params_batch_size,
-                class_mode='binary'
+                **generator_kwargs
             )
                     
-            test_datagen = ImageDataGenerator(
-                preprocessing_function=preprocess_input,
-                rotation_range=40,
-                width_shift_range=0.2,
-                height_shift_range=0.2,
-                shear_range=0.2,
-                zoom_range=0.2,
-                horizontal_flip=True,
-                fill_mode='nearest'
-            )
+            test_datagen = ImageDataGenerator(**data_generator_kwargs)
             self.valid_generator = test_datagen.flow_from_directory(
                 self.config.validation_data,
-                target_size=IMAGE_SIZE,
-                batch_size=self.config.params_batch_size,
-                class_mode='binary'
+                **generator_kwargs
             )
         else:
-            self.train_generator = keras.utils.image_dataset_from_directory(
-                directory = self.config.training_data,
+            generate_kwargs = dict(
                 labels='inferred',
                 label_mode = 'int',
                 batch_size=self.config.params_batch_size,
                 image_size=IMAGE_SIZE
+            )
+            
+            self.train_generator = keras.utils.image_dataset_from_directory(
+                directory = self.config.training_data,
+                **generate_kwargs
             )
             self.train_generator = self.train_generator.map(preprocess_input)
 
             self.valid_generator = keras.utils.image_dataset_from_directory(
                 directory = self.config.validation_data,
-                labels='inferred',
-                label_mode = 'int',
-                batch_size=self.config.params_batch_size,
-                image_size=IMAGE_SIZE
+                **generate_kwargs
             )
             self.valid_generator = self.valid_generator.map(preprocess_input)
 
