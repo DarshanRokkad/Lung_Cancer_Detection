@@ -1,4 +1,4 @@
-<h1 align="center">Chest Cancer🫁 Classification 🤖</h1>
+<h1 align="center">Lung Cancer🫁 Classification 🤖</h1>
 
 ---
 
@@ -45,7 +45,7 @@ Click the below image to see vedio solution explaination.
 
 
 <p align="center">I have used DVC for my training pipeline versioning.</p>
-<p align="center"><img src="images/dvc_1.png" width="700" height="400"></p>
+<p align="center"><img src="images/dvc1.png" width="700" height="400"></p>
 
 ---
 
