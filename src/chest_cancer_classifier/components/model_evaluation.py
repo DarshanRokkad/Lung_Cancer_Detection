@@ -57,6 +57,7 @@ class ModelEvaluation:
                     "accuracy": self.score[1]
                 }
             )
+            mlflow.log_artifact('metrics.jpg', 'images')
             if tracking_url_type_store != "file":
                 mlflow.keras.log_model(self.model, "model", registered_model_name="VGG16Model")
             else:
