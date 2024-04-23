@@ -45,22 +45,22 @@ Click the below image to see vedio solution explaination.
 
 ```
 │  
+├── .dvc                                      <-- used for data and pipeline versioning
+│  
 ├── .github
 │   │
 │   └── workflow                          
 │       │
 │       └── main.yml                         <-- contains yml code to create CI-CD pipeline for github actions
 │  
-├── artificats                               <-- Contains dataset(train, test and raw) and pickle files(preprocessor and model)
+├── artificats                               <-- contains data and trained models(in remote repository)
 │  
 ├── images                                   <-- contains images used in readme file
 │  
-├── notebooks
-│   │
-│   └── experiment.ipynb                     <-- a jupyter notebook where eda and model training is performed
+├── config                                   <-- contains yaml file where we mention the configuration of our project
 │  
-├── resources                                <-- folder contains some usefull commands and steps used while build project 
-│   
+├── notebooks                                <-- contains jupyter notebook where experiments and research work is done
+│
 ├── src
 │   │
 │   ├── components
@@ -95,42 +95,30 @@ Click the below image to see vedio solution explaination.
 │   ├── logger.py                            <-- module to create log folder for each execution and log the events whenever required.
 │   │
 │   └── utils.py                             <-- module to which contians functions that are commonly used.
-│   
-├── static
-│   │
-│   └── css                                  <-- contains all css files
-│   
-├── templates                                <-- contains all html files
-│   
-├── tests
-│   │
-│   ├── integration                          <-- folder contains module used to do integration testing
-│   │
-│   └── unit                                 <-- folder contains module used to do unit or module testing
+│
+├── .dvcignore                               <-- similar to .gitignore 
 │
 ├── .gitignore                               <-- used to ignore the unwanted file and folders
 │
-├── application.py                           <-- flask web application to take input from user and render output
-│
-├── init_setup.sh                            <-- file is likely a shell script used to initailize the setup
-│
 ├── LICENSE                                  <-- copyright license for the github repository 
-│
-├── pyproject.toml                           <-- used to specify various project metadata and configuration settings
 │
 ├── README.md                                <-- used to display the information about the project
 │
-├── requirements_dev.txt                     <-- text file which contain the dependencies in development environment
+├── app.py                                   <-- this is contains web page written in streamlit
+│
+├── dvc.lock                                 <-- this is file is output of pipeline versioning
+│
+├── dvc.yaml                                 <-- this is yaml file contains code to reproduce training pipeline
+│
+├── params.yaml                              <-- this yaml file contains the parameters and values used during model training
 │
 ├── requirements.txt                         <-- text file which contain the dependencies/packages used in project 
 │
-├── setup.cfg                                <-- configuration file used to provide various settings related to packaging and distribution
+├── scores.json                              <-- contains the score recorded after model training
 │
 ├── setup.py                                 <-- python script used for building python packages of the project
 │
-├── template.py                              <-- program used to create the project structure
-│
-└── tox.ini                                  <-- used to automate and manage the testing of a project across multiple python environments
+└── template.py                              <-- program used to create the project structure
 ```
 
 ---
