@@ -43,7 +43,6 @@ Click the below image to see vedio solution explaination.
 
 <h3 align="center">Integration of DVC</h3>
 
-
 <p align="center">I have used DVC for my training pipeline versioning.</p>
 <p align="center"><img src="images/dvc1.png" width="700" height="400"></p>
 
@@ -51,10 +50,16 @@ Click the below image to see vedio solution explaination.
 
 <h3 align="center">Integration of Mlflow and Dags</h3>
 
-
 <p align="center">I used mlflow to manage my deep learning life cycle by logging the evalution metrics and plots.</p>
 <p align="center">I used dagshub as a remote repository with mlflow to store the logs and artifacts.</p>
 <p align="center"><img src="images/mlflow1.png" width="700" height="400"></p>
+
+---
+
+<h3 align="center">Deployment of streamlit application on aws cloud</h3>
+
+<p align="center">I have used AWS ECR and AWS EC2 to deploy our application.</p>
+<p align="center"><img src="images/deploy1.png" width="700" height="400"></p>
 
 ---
 
