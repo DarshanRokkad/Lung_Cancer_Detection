@@ -41,6 +41,14 @@ Click the below image to see vedio solution explaination.
 
 ---
 
+<h3 align="center">Integration of DVC</h3>
+
+
+<p align="center">I have used DVC for my training pipeline versioning.</p>
+<p align="center"><img src="images/dvc_1.png" width="700" height="400"></p>
+
+---
+
 <h3 align="center">Project Structure</h3>
 
 ```
@@ -55,9 +63,9 @@ Click the below image to see vedio solution explaination.
 │  
 ├── artificats                               <-- contains data and trained models(in remote repository)
 │  
-├── images                                   <-- contains images used in readme file
-│  
 ├── config                                   <-- contains yaml file where we mention the configuration of our project
+│  
+├── images                                   <-- contains images used in readme file
 │  
 ├── notebooks                                <-- contains jupyter notebook where experiments and research work is done
 │
