@@ -1,4 +1,4 @@
-<h1 align="center">Lung Cancer🫁 Classification 🤖</h1>
+<h1 align="center">Lung Cancer🫁 Detection 🤖</h1>
 
 ---
 
@@ -49,84 +49,104 @@ Click the below image to see vedio solution explaination.
 
 ---
 
+<h3 align="center">Integration of Mlflow and Dags</h3>
+
+
+<p align="center">I used mlflow to manage my deep learning life cycle by logging the evalution metrics and plots.</p>
+<p align="center">I used dagshub as a remote repository with mlflow to store the logs and artifacts.</p>
+<p align="center"><img src="images/mlflow1.png" width="700" height="400"></p>
+
+---
+
 <h3 align="center">Project Structure</h3>
 
 ```
 │  
-├── .dvc                                      <-- used for data and pipeline versioning
+├── .dvc                                               <-- used for data and pipeline versioning
 │  
-├── .github
-│   │
-│   └── workflow                          
-│       │
-│       └── main.yml                         <-- contains yml code to create CI-CD pipeline for github actions
+├── .github/workflow                                   <-- contains yml code to create CI-CD pipeline for github actions 
+│          
+├── artificats (remote)                                <-- contains dataset and trained models(in remote repository)
+│          
+├── config                                             <-- contains yaml file where we mention the configuration of our project
+│          
+├── images                                             <-- contains images used in readme file
+│          
+├── logs (remote)                                      <-- contains logs created during running of pipelines and components
+│          
+├── notebook                                           <-- contains jupyter notebook where experiments and research work is done
 │  
-├── artificats                               <-- contains data and trained models(in remote repository)
-│  
-├── config                                   <-- contains yaml file where we mention the configuration of our project
-│  
-├── images                                   <-- contains images used in readme file
-│  
-├── notebooks                                <-- contains jupyter notebook where experiments and research work is done
+├── secrets (remote)                                   <-- contains a yaml file which contains the api tokens, secreat keys, password and many more
 │
 ├── src
-│   │
-│   ├── components
-│   │   │
-│   │   ├── __init__.py
-│   │   │
-│   │   ├── data_ingestion.py             <-- module which reads data from different data source and do train test split
-│   │   │                                        then save raw data, train data and test data inside artifact folder 
-│   │   │
-│   │   ├── data_transformation.py        <-- module which takes training and test dataset and then do feature engineering
-│   │   │                                        then save preprocessor as pickle file inside artifact folder 
-│   │   │
-│   │   ├── model_training.py             <-- module which takes preprocessed training and test data and 
-│   │   │                                        this data is used to train different models and selects best model 
-│   │   │                                        it also perform hyperparameter tuning 
-│   │   │
-│   │   │
-│   │   └── model_evaluation.py           <-- module which calculate the performance metrics
-│   │
-│   ├── pipeline
-│   │   │
-│   │   ├── __init__.py
-│   │   │
-│   │   ├── training_pipeline.py          <-- module used to train the model using training components
-│   │   │
-│   │   └── prediction_pipeline.py        <-- module takes the input data given by user through flask web application and returns the prediction
-│   │
-│   ├── __init__.py
-│   │
-│   ├── exception.py                         <-- module to display the custom exception
-│   │
-│   ├── logger.py                            <-- module to create log folder for each execution and log the events whenever required.
-│   │
-│   └── utils.py                             <-- module to which contians functions that are commonly used.
-│
-├── .dvcignore                               <-- similar to .gitignore 
-│
-├── .gitignore                               <-- used to ignore the unwanted file and folders
-│
-├── LICENSE                                  <-- copyright license for the github repository 
-│
-├── README.md                                <-- used to display the information about the project
-│
-├── app.py                                   <-- this is contains web page written in streamlit
-│
-├── dvc.lock                                 <-- this is file is output of pipeline versioning
-│
-├── dvc.yaml                                 <-- this is yaml file contains code to reproduce training pipeline
-│
-├── params.yaml                              <-- this yaml file contains the parameters and values used during model training
-│
-├── requirements.txt                         <-- text file which contain the dependencies/packages used in project 
-│
-├── scores.json                              <-- contains the score recorded after model training
-│
-├── setup.py                                 <-- python script used for building python packages of the project
-│
-└── template.py                              <-- program used to create the project structure
+│    │
+│    └── chest_cancer_classifier (package)
+│          │
+│          ├── components
+│          │     │
+│          │     ├── __init__.py
+│          │     │
+│          │     ├── data_ingestion.py                 <-- this module downloads zip file dataset present in google drive and extracts zip file in local machine
+│          │     │
+│          │     ├── prepare_base_model.py             <-- this module pulls the vgg-16 base model and adds custom layers at the end then saves custom model
+│          │     │
+│          │     ├── model_trainer.py                  <-- this module take the custom model and train it with the training data and validates with validation data
+│          │     │
+│          │     └── model_evaluation.py               <-- this module test the trained model with the testing data and log the evaluation metrics and artifacts to dagshub using mlflow 
+│          │
+│          ├── config                                  <-- this folder contains module that have the configuration manager which is used to manage configuration of each components of training pipeline  
+│          │
+│          ├── constants                               <-- module contains path of the yaml file 
+│          │
+│          ├── entity                                  <-- has a python file which contains data class of each component of the training pipeline
+│          │
+│          ├── pipeline
+│          │     │
+│          │     ├── __init__.py
+│          │     │
+│          │     ├── training_pipeline.py              <-- module used to train the model in different stages
+│          │     │
+│          │     └── prediction_pipeline.py            <-- module takes the image from user through web application and returns the prediction
+│          │
+│          ├── training_stages                         <-- folder used to create stages by using the configuration manager and components 
+│          │     │
+│          │     ├── __init__.py
+│          │     │
+│          │     ├── stage_01_data_ingestion.py        <-- module used to create a data ingestion configuration object and then ingest data into local machine
+│          │     │
+│          │     ├── stage_02_prepare_base_model.py    <-- module used to create custom model by using vgg-16 as base model and modify/add few fully connected layers at last
+│          │     │
+│          │     ├── stage_03_model_trainer.py         <-- module used to train custom model using training and validation data
+│          │     │
+│          │     └── stage_04_model_evaluation.py      <-- module used to evaluate the trained model using test data
+│          │
+│          ├── utils                                   <-- module to which contians functions that are commonly used.
+│          │
+│          └── __init__.py                             <-- this python file contains logger
+│          
+├── .dvcignore                                         <-- similar to .gitignore 
+│          
+├── .gitignore                                         <-- used to ignore the unwanted file and folders
+│          
+├── LICENSE                                            <-- copyright license for the github repository 
+│          
+├── README.md                                          <-- used to display the information about the project
+│          
+├── app.py                                             <-- this is contains web page written in streamlit
+│          
+├── dvc.lock                                           <-- this is file is output of pipeline versioning
+│          
+├── dvc.yaml                                           <-- this is yaml file contains code to reproduce training pipeline
+│          
+├── params.yaml                                        <-- this yaml file contains the parameters and values used during model training
+│          
+├── requirements.txt                                   <-- text file which contain the dependencies/packages used in project 
+│          
+├── scores.json                                        <-- contains the score recorded after model evaluation
+│          
+├── setup.py                                           <-- python script used for building our project as a python packages
+│          
+└── template.py                                        <-- program used to create the project structure
 ```
 
 ---
