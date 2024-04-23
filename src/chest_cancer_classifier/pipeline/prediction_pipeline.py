@@ -17,7 +17,6 @@ class PredictionPipeline:
         pred = model.predict(test_image)
         print(pred)
         result = round(pred[0][0])
-        print(result)
         if result == 1:
             prediction = 'Normal'
         else:
