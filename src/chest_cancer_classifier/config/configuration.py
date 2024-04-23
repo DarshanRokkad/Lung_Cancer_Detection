@@ -74,13 +74,12 @@ class ConfigurationManager:
         
     
     def get_evaluation_config(self) -> EvaluationConfig:
-        training = self.config.training
         mlflow_secrets = self.secrets.mlflow
         params = self.params
         
         eval_config = EvaluationConfig(
-            path_of_model=Path(training.trained_model_path),
-            training_data=Path(training.training_data),
+            path_of_model=Path(self.config.training.trained_model_path),
+            testing_data=Path(self.config.evaluation.testing_data),
             mlflow_uri=mlflow_secrets.MLFLOW_TRACKING_URI,
             all_params=params,
             params_image_size=params.IMAGE_SIZE,
