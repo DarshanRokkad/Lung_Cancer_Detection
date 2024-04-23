@@ -3,10 +3,10 @@ from PIL import Image
 from chest_cancer_classifier.pipeline.prediction_pipeline import PredictionPipeline
 
 
-st.markdown("<h1 style='text-align: center;'>Chest Cancer Prediction</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center;'>🫁Lung Cancer Prediction🔍</h1>", unsafe_allow_html=True)
 st.write("")
 
-uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
+uploaded_file = st.file_uploader("Choose an CT Scan image...", type=["jpg", "jpeg", "png"])
 st.write("")
 st.write("")
 
