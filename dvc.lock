@@ -5,8 +5,8 @@ stages:
     deps:
     - path: config\config.yaml
       hash: md5
-      md5: 982b2ea9b90da6e3ecf5d54ba1e11f69
-      size: 644
+      md5: c290da62e3924f72ec806eb0224e108c
+      size: 646
     - path: src\chest_cancer_classifier\training_stages\stage_01_data_ingestion.py
       hash: md5
       md5: 748fb175f48db9a125fc3bdf52c8a77c
@@ -22,11 +22,11 @@ stages:
     deps:
     - path: config\config.yaml
       hash: md5
-      md5: 982b2ea9b90da6e3ecf5d54ba1e11f69
-      size: 644
+      md5: c290da62e3924f72ec806eb0224e108c
+      size: 646
     - path: params.yaml
       hash: md5
-      md5: 3fbedb22c04e70ad3d858ddf430aa554
+      md5: c57b271db7c895ebf23a7f9c523f3bb7
       size: 171
     - path: src\chest_cancer_classifier\training_stages\stage_02_prepare_base_model.py
       hash: md5
@@ -40,13 +40,13 @@ stages:
         - 224
         - 3
         INCLUDE_TOP: false
-        LEARNING_RATE: 0.008
+        LEARNING_RATE: 0.001
         WEIGHTS: imagenet
     outs:
     - path: artifacts\prepare_base_model
       hash: md5
-      md5: 0537fcdca7a72ba1e1427bdf1fe33a72.dir
-      size: 118054560
+      md5: 9a3d2681c66eeadec85a9303a1081c80.dir
+      size: 143527560
       nfiles: 2
   training:
     cmd: python src\chest_cancer_classifier\training_stages\stage_03_model_trainer.py
@@ -58,16 +58,16 @@ stages:
       nfiles: 343
     - path: artifacts\prepare_base_model
       hash: md5
-      md5: 0537fcdca7a72ba1e1427bdf1fe33a72.dir
-      size: 118054560
+      md5: 9a3d2681c66eeadec85a9303a1081c80.dir
+      size: 143527560
       nfiles: 2
     - path: config\config.yaml
       hash: md5
-      md5: 982b2ea9b90da6e3ecf5d54ba1e11f69
-      size: 644
+      md5: c290da62e3924f72ec806eb0224e108c
+      size: 646
     - path: params.yaml
       hash: md5
-      md5: 3fbedb22c04e70ad3d858ddf430aa554
+      md5: c57b271db7c895ebf23a7f9c523f3bb7
       size: 171
     - path: src\chest_cancer_classifier\training_stages\stage_03_model_trainer.py
       hash: md5
@@ -77,16 +77,16 @@ stages:
       params.yaml:
         AUGMENTATION: true
         BATCH_SIZE: 14
-        EPOCHS: 1
+        EPOCHS: 2
         IMAGE_SIZE:
         - 224
         - 224
         - 3
     outs:
-    - path: artifacts\training\model.h5
+    - path: artifacts\training\trained_model.h5
       hash: md5
-      md5: e44a79b7e1c2a22a7e9d12c63e66294d
-      size: 59337520
+      md5: f73c150030113c63e502bf220d67e5e9
+      size: 136003600
   evaluation:
     cmd: python src\chest_cancer_classifier\training_stages\stage_04_model_evaluation.py
     deps:
@@ -95,17 +95,17 @@ stages:
       md5: 904fa45d934ce879b3b1933dca6cb2f1.dir
       size: 49247431
       nfiles: 343
-    - path: artifacts\training\model.h5
+    - path: artifacts\training\trained_model.h5
       hash: md5
-      md5: e44a79b7e1c2a22a7e9d12c63e66294d
-      size: 59337520
+      md5: f73c150030113c63e502bf220d67e5e9
+      size: 136003600
     - path: config\config.yaml
       hash: md5
-      md5: 982b2ea9b90da6e3ecf5d54ba1e11f69
-      size: 644
+      md5: c290da62e3924f72ec806eb0224e108c
+      size: 646
     - path: params.yaml
       hash: md5
-      md5: 3fbedb22c04e70ad3d858ddf430aa554
+      md5: c57b271db7c895ebf23a7f9c523f3bb7
       size: 171
     - path: src\chest_cancer_classifier\training_stages\stage_04_model_evaluation.py
       hash: md5
@@ -121,5 +121,5 @@ stages:
     outs:
     - path: scores.json
       hash: md5
-      md5: 00e0e54d7e1378bac257cf6b80a82a64
-      size: 73
+      md5: 21c6b8ed0aab4186a55b190cfb9b73bf
+      size: 57
