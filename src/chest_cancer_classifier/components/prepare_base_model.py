@@ -28,7 +28,7 @@ class PrepareBaseModel:
 
     
     @staticmethod
-    def __create_custom_model(base_model, classes, freeze_all, freeze_till, learning_rate):
+    def __build_custom_model(base_model, classes, freeze_all, freeze_till, learning_rate):
         if freeze_all:
             base_model.trainable = False
         elif (freeze_till is not None) and (freeze_till > 0):
@@ -52,8 +52,8 @@ class PrepareBaseModel:
         return custom_model
     
 
-    def update_base_model(self):
-        self.custom_model = self.__create_custom_model(
+    def create_custom_model(self):
+        self.custom_model = self.__build_custom_model(
             base_model=self.model,
             classes=self.config.params_classes,
             freeze_all=True,
