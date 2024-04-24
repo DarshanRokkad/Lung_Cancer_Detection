@@ -18,7 +18,7 @@ Click the below image to see vedio solution explaination.
 
 <h3 align="center">Approch for the problem</h3>
 
-<h4 align="center">Workflows</h4>
+<h4 align="center">Workflows</h4>    
 
 1. Update config.yaml
 2. Update secrets.yaml (Optional)
@@ -30,20 +30,20 @@ Click the below image to see vedio solution explaination.
 8. Update the Training pipeline
 9. Update the dvc.yaml
 
-``` Note : When we use mlflow before runing code we have to set the mlflow variables ```
+``` Note : When we use mlflow before runing code we have to set the mlflow variables ```  
 ``` Note : When we do pipeline versioning we have to have driver code in each stages itself ```
 
 ---
 
 <h3 align="center">Project UI</h3>
 
-<p align="center"><img src="images/ui1.png" width="700" height="400"></p>  
-<p align="center"><img src="images/ui2.png" width="700" height="400"></p>  
-<p align="center"><img src="images/ui3.png" width="700" height="400"></p>  
+<p align="center"><img src="images/ui1.png" width="700" height="450"></p>  
+<p align="center"><img src="images/ui2.png" width="700" height="450"></p>  
+<p align="center"><img src="images/ui3.png" width="700" height="450"></p>  
 <p align="center">Case 1 : Adinocarsinoma cancer image</p>  
-<p align="center"><img src="images/ui4.png" width="700" height="400"></p>  
+<p align="center"><img src="images/ui4.png" width="700" height="450"></p>  
 <p align="center">Case 2 : Normal image</p>  
-<p align="center"><img src="images/ui5.png" width="700" height="400"></p>  
+<p align="center"><img src="images/ui5.png" width="700" height="450"></p>  
 
 ---
 
