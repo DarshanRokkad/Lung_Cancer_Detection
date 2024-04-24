@@ -37,13 +37,13 @@ Click the below image to see vedio solution explaination.
 
 <h3 align="center">Project UI</h3>
 
-<p align="center"><img src="images/ui1.png" width="700" height="450"></p>  
-<p align="center"><img src="images/ui2.png" width="700" height="450"></p>  
-<p align="center"><img src="images/ui3.png" width="700" height="450"></p>  
+<p align="center"><img src="images/ui1.png" width="700" height="420"></p>  
+<p align="center"><img src="images/ui2.png" width="700" height="420"></p>  
+<p align="center"><img src="images/ui3.png" width="700" height="420"></p>  
 <p align="center">Case 1 : Adinocarsinoma cancer image</p>  
-<p align="center"><img src="images/ui4.png" width="700" height="450"></p>  
+<p align="center"><img src="images/ui4.png" width="700" height="420"></p>  
 <p align="center">Case 2 : Normal image</p>  
-<p align="center"><img src="images/ui5.png" width="700" height="450"></p>  
+<p align="center"><img src="images/ui5.png" width="700" height="420"></p>  
 
 ---
 
