@@ -12,7 +12,7 @@ Given a CT Scan image we have to classify wheather the CT Scan image is Adenocar
 
 Click the below image to see vedio solution explaination. 
 
-[![YouTube Video](images/demo.png)](https://www.youtube.com/embed/______)
+[![YouTube Video](images/demonestration.png)](https://www.youtube.com/embed/______)
 
 ---
 
