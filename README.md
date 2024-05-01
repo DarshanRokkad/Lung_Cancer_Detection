@@ -52,6 +52,7 @@ Click the below image to see vedio solution explaination.
 <p align="center">I have used DVC for versioning of training pipeline.</p>
 <p align="center">The below image in the mlflow dag which represent the dependency of the components.</p>
 <p align="center"><img src="images/dvc1.png" width="700" height="400"></p>
+<p align="center"><img src="images/mlflow2.png" width="700" height="410"></p>
 
 ---
 
