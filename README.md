@@ -62,11 +62,11 @@ Click the below image to see vedio solution explaination.
 <p>I used dagshub as a remote repository with mlflow to store the logs and artifacts.</p>
 <p align="center"><img src="images/mlflow1.png" width="700" height="400"></p>
 <p align="center">The below is project pipeline of the project.</p>
-<p align="center"><img src="images/mlflow2.png" width="700" height="400"></p>
-<p align="center"><img src="images/mlflow3.png" width="700" height="400"></p>
-<p align="center"><img src="images/mlflow4.png" width="700" height="400"></p>
-<p align="center"><img src="images/mlflow5.png" width="700" height="400"></p>
-<p align="center"><img src="images/mlflow6.png" width="700" height="400"></p>
+<p align="center"><img src="images/mlflow2.png" width="700" height="410"></p>
+<p align="center"><img src="images/mlflow3.png" width="700" height="410"></p>
+<p align="center"><img src="images/mlflow4.png" width="700" height="410"></p>
+<p align="center"><img src="images/mlflow5.png" width="700" height="410"></p>
+<p align="center"><img src="images/mlflow6.png" width="700" height="410"></p>
 
 ---
 
