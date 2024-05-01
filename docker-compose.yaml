@@ -1,8 +1,0 @@
-version: "1"
-services:
-  application:
-    build: .
-    image: ${IMAGE_NAME}
-    container_name: lung-cancer
-    ports:
-      - "8501:8501"
