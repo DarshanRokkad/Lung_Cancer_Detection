@@ -12,13 +12,30 @@ Given a CT Scan image we have to classify wheather the CT Scan image is Adenocar
 
 Click the below image to see vedio solution explaination. 
 
-[![YouTube Video](images/youtube-tumbnail.png)](https://www.youtube.com/embed/______)
+[![YouTube Video](images/demo.png)](https://www.youtube.com/embed/______)
 
 ---
 
 <h3 align="center">Approch for the problem</h3>
 
-<h4>Workflows</h4>    
+<h4>Steps</h4>    
+
+1. Problem understand and gaining information about cancer.
+2. Data collection and uploading zip file to google drive.
+3. Creation of virutal environment.
+4. Performing experiment on jupyter notebook using pretrained VGG 16 model.
+5. Creation of project structure and project packaging.
+6. Converting jupyter notebook code to modular coding with exception handling and logging.
+7. Developing training pipeline components and pipeline itself. 
+8. Intgration of mlflow to track experiments and for recoding of parameter, result and preformance metrics.
+9. Training model using training pipeline and tracking experiments using mlflow with dagshub as remote repository.
+10. Storing trained model in local artifacts repository.
+11. Developing prediction pipeline which classify wheather lung has adinocarsinoma cancer or not using chest/lung ct scan image.
+12. Developing of application using streamlit which takes ct scan image from user then uses trained model to predict output then render back on ui. 
+13. Dockerizing application to deploy on cloud.
+14. Deploying lung cancer detection application on AWS cloud.
+
+<h4>Workflows for bulding training pipeline components</h4>    
 
 1. Update config.yaml
 2. Update secrets.yaml (Optional)
