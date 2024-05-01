@@ -18,7 +18,7 @@ Click the below image to see vedio solution explaination.
 
 <h3 align="center">Approch for the problem</h3>
 
-<h4 align="center">Workflows</h4>    
+<h4>Workflows</h4>    
 
 1. Update config.yaml
 2. Update secrets.yaml (Optional)
