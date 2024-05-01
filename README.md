@@ -58,8 +58,8 @@ Click the below image to see vedio solution explaination.
 <h3 align="center">Integration of Mlflow and Dags</h3>
 
 <p align="center">https://dagshub.com/DarshanRokkad/Chest_Cancer_Classification</p>
-<p align="center">I used mlflow to manage my deep learning life cycle by logging the evalution metrics and plots.</p>
-<p align="center">I used dagshub as a remote repository with mlflow to store the logs and artifacts.</p>
+<p>I used mlflow to manage my deep learning life cycle by logging the evalution metrics and plots.</p>
+<p>I used dagshub as a remote repository with mlflow to store the logs and artifacts.</p>
 <p align="center"><img src="images/mlflow1.png" width="700" height="400"></p>
 <p align="center">The below is project pipeline of the project.</p>
 <p align="center"><img src="images/mlflow2.png" width="700" height="400"></p>
