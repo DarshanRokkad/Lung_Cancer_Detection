@@ -17,4 +17,7 @@ scipy
 Flask
 Flask-Cors
 streamlit
+botocore==1.34.41
+boto3
+s3fs
 -e .
