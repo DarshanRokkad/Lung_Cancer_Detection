@@ -27,6 +27,12 @@ jobs:
     name: Continuous Delivery
     needs: integration
     runs-on: ubuntu-latest
+    env:
+      s3_ACCESS_KEY_ID: ${{ secrets.s3_ACCESS_KEY_ID }}
+      s3_SECRET_ACCESS_KEY: ${{ secrets.s3_SECRET_ACCESS_KEY }}
+      s3_REGION: ${{ secrets.s3_REGION }}
+      s3_BUCKET_NAME: ${{ secrets.s3_BUCKET_NAME }}
+      s3_OBJECT_KEY_NAME: ${{ secrets.s3_OBJECT_KEY_NAME }}
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
@@ -84,7 +90,7 @@ jobs:
        
       - name: Run Docker Image to serve users
         run: |
-         docker run -d -p 8501:8501 --ipc="host" --name=mltest -e 'AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}' -e 'AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}' -e 'AWS_REGION=${{ secrets.AWS_REGION }}'  ${{secrets.AWS_ECR_LOGIN_URI}}/${{ secrets.ECR_REPOSITORY_NAME }}:latest
+         docker run -d -p 8501:8501 --ipc="host" --name=dltest -e 'AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}' -e 'AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}' -e 'AWS_REGION=${{ secrets.AWS_REGION }}'  ${{secrets.AWS_ECR_LOGIN_URI}}/${{ secrets.ECR_REPOSITORY_NAME }}:latest
 
       - name: Clean previous images and containers
         run: |

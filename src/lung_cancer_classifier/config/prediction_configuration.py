@@ -20,11 +20,11 @@ class ConfigurationManager:
         
         pull_artifacts_config = PullArtifactsConfig(
             trained_model_path=Path(training.trained_model_path),
-            access_key_id=os.environ.get('ACCESS_KEY_ID'),
-            secret_access_key=os.environ.get('SECRET_ACCESS_KEY'),
-            region=os.environ.get('REGION'),            
-            bucket_name=os.environ.get('BUCKET_NAME'),
-            object_key_name=os.environ.get('OBJECT_KEY_NAME')
+            access_key_id=os.environ.get('s3_ACCESS_KEY_ID'),
+            secret_access_key=os.environ.get('s3_SECRET_ACCESS_KEY'),
+            region=os.environ.get('s3_REGION'),            
+            bucket_name=os.environ.get('s3_BUCKET_NAME'),
+            object_key_name=os.environ.get('s3_OBJECT_KEY_NAME')
         )
         
         return pull_artifacts_config
