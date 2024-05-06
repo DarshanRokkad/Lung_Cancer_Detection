@@ -1,4 +1,4 @@
-from lung_cancer_classifier.config.configuration import ConfigurationManager
+from lung_cancer_classifier.config.prediction_configuration import ConfigurationManager
 from lung_cancer_classifier.components.pull_model import PullArtifacts
 
 

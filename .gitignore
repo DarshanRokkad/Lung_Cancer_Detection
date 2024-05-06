@@ -161,3 +161,5 @@ cython_debug/
 artifacts
 secrets
 *.jpg
+.dockerignore
+notebook/s3_boto_experiments.ipynb
