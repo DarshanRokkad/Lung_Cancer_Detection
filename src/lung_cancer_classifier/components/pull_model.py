@@ -7,6 +7,11 @@ class PullArtifacts:
         self.config = config
         
     def download_model(self):
+        
+        print(self.config.access_key_id)
+        print(self.config.secret_access_key)
+        print(self.config.bucket_name)
+        print(self.config.region)
 
         s3_resource = boto3.resource(
             service_name='s3',
