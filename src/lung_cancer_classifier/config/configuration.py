@@ -1,6 +1,6 @@
 from lung_cancer_classifier.constants import *
 from lung_cancer_classifier.utils.common import read_yaml, create_directories
-from lung_cancer_classifier.entity.config_entity import DataIngestionConfig, PrepareBaseModelConfig, TrainingConfig, EvaluationConfig
+from lung_cancer_classifier.entity.config_entity import DataIngestionConfig, PrepareBaseModelConfig, TrainingConfig, EvaluationConfig, PullArtifactsConfig
 
 
 class ConfigurationManager:
@@ -87,3 +87,21 @@ class ConfigurationManager:
         )
         
         return eval_config
+    
+    
+    def get_pull_artifacts_config(self) -> PullArtifactsConfig:
+        aws_secrets = self.secrets.aws
+        training = self.config.training
+        
+        create_directories([Path(training.root_dir)])
+        
+        pull_artifacts_config = PullArtifactsConfig(
+            trained_model_path=Path(training.trained_model_path),
+            access_key_id=aws_secrets.ACCESS_KEY_ID,
+            secret_access_key=aws_secrets.SECRET_ACCESS_KEY,
+            region=aws_secrets.REGION,            
+            bucket_name=aws_secrets.BUCKET_NAME,
+            object_key_name=aws_secrets.OBJECT_KEY_NAME
+        )
+        
+        return pull_artifacts_config

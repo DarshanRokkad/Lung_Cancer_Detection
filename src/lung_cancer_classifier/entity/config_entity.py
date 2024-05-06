@@ -43,3 +43,13 @@ class EvaluationConfig:
     mlflow_uri: str
     params_image_size: list
     params_batch_size: int
+
+    
+@dataclass(frozen=True)
+class PullArtifactsConfig:
+    trained_model_path: Path
+    access_key_id: str
+    secret_access_key: str
+    region: str
+    bucket_name: str
+    object_key_name: str
