@@ -6,7 +6,7 @@ class DownloadArtifacts:
     def __init__(self):
         pass
     
-    def download():        
+    def download(self):        
         try:
             config = ConfigurationManager()
             pull_artifacts_config = config.get_pull_artifacts_config()
@@ -15,6 +15,6 @@ class DownloadArtifacts:
         except Exception as e:
             raise e
 
-if __name__ == "":
+if __name__ == "__main__":
     download_artifacts = DownloadArtifacts()
     download_artifacts.download()
