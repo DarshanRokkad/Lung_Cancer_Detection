@@ -3,7 +3,7 @@ name: workflow
 on:
   push:
     branches:
-      - mast          ## changes
+      - master
     paths-ignore:
       - 'README.md'
       - 'images/**'
