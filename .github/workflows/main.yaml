@@ -27,12 +27,6 @@ jobs:
     name: Continuous Delivery
     needs: integration
     runs-on: ubuntu-latest
-    env:
-      s3_ACCESS_KEY_ID: ${{ secrets.s3_ACCESS_KEY_ID }}
-      s3_SECRET_ACCESS_KEY: ${{ secrets.s3_SECRET_ACCESS_KEY }}
-      s3_REGION: ${{ secrets.s3_REGION }}
-      s3_BUCKET_NAME: ${{ secrets.s3_BUCKET_NAME }}
-      s3_OBJECT_KEY_NAME: ${{ secrets.s3_OBJECT_KEY_NAME }}
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
@@ -59,7 +53,17 @@ jobs:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY_NAME }}
           IMAGE_TAG: latest
+          s3_ACCESS_KEY_ID: ${{ secrets.s3_ACCESS_KEY_ID }}
+          s3_SECRET_ACCESS_KEY: ${{ secrets.s3_SECRET_ACCESS_KEY }}
+          s3_REGION: ${{ secrets.s3_REGION }}
+          s3_BUCKET_NAME: ${{ secrets.s3_BUCKET_NAME }}
+          s3_OBJECT_KEY_NAME: ${{ secrets.s3_OBJECT_KEY_NAME }}
         run: |
+          export s3_ACCESS_KEY_ID=$s3_ACCESS_KEY_ID
+          export s3_SECRET_ACCESS_KEY=$s3_SECRET_ACCESS_KEY
+          export s3_REGION=$s3_REGION
+          export s3_BUCKET_NAME=$s3_BUCKET_NAME
+          export s3_OBJECT_KEY_NAME=$s3_OBJECT_KEY_NAME
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
