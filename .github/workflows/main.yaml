@@ -36,14 +36,6 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y jq unzip
 
-      - name: Cleanup Docker Resources
-        run: |
-          docker system prune -af
-          docker container prune -f
-          docker image prune -f
-          docker volume prune -f
-          docker network prune -f
-
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -79,6 +71,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
+      - name: Cleanup Docker Resources
+        run: |
+          docker system prune -af
+          docker container prune -f
+          docker image prune -f
+          docker volume prune -f
+          docker network prune -f
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
