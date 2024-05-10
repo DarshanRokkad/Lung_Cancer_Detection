@@ -162,3 +162,4 @@ artifacts
 *.jpg
 .dockerignore
 notebook/s3_boto_experiments.ipynb
+lung-cancer-key-pair.pem
