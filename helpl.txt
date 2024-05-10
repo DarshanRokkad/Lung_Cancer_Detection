@@ -1,0 +1,20 @@
+-- in ec2 instance --
+sudo yum update -y
+sudo amazon-linux-extras install docker
+sudo service docker start 
+sudo usermod -a -G docker ec2-user
+** create a directory and move inside directory.
+
+
+--- In gitbash ---
+chmod 600 lung-cancer-key-pair.pem
+scp -i lung-cancer-key-pair.pem Dockerfile README.md app.py deployment_requirements.txt setup.py ec2-user@13.235.65.207:/home/ec2-user/lung_cancer_app
+scp -i lung-cancer-key-pair.pem src/lung_cancer_classifier/pipeline/prediction_pipeline.py ec2-user@13.235.65.207:/home/ec2-user/lung_cancer_app/src/lung_cancer_classifier/pipeline
+scp -i lung-cancer-key-pair.pem artifacts/training/trained_model.h5 ec2-user@13.235.65.207:/home/ec2-user/lung_cancer_app/artifacts/training
+
+
+-- in ec2 instance --
+sudo docker build -t lung-cancer-img .
+sudo docker run -p 80:80 lung-cancer-img
+
+* to storage information -> df -h /
