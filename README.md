@@ -95,8 +95,6 @@ Click the below image to see vedio solution explaination.
 <p align="center"><img src="images/deploy2.png" width="700" height="400"></p>
 <p align="center"><img src="images/deploy3.png" width="700" height="400"></p>
 <p align="center"><img src="images/deploy4.png" width="700" height="400"></p>
-<p align="center"><img src="images/deploy5.png" width="700" height="400"></p>
-<p align="center"><img src="images/deploy6.png" width="700" height="400"></p>
 
 ---
 
